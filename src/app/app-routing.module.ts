@@ -32,6 +32,8 @@ import { PagesFaqComponent } from './pages/pages-faq/pages-faq.component';
 import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { PagesRegisterComponent } from './pages/pages-register/pages-register.component';
 import { UsersProfileComponent } from './pages/users-profile/users-profile.component';
+import {BeneficiareAddComponent} from "./components/beneficiaire/beneficiare-add/beneficiare-add.component";
+import {BeneficiareListComponent} from "./components/beneficiaire/beneficiare-list/beneficiare-list.component";
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -66,7 +68,9 @@ const routes: Routes = [
   { path: 'pages-faq', component: PagesFaqComponent },
   { path: 'pages-login', component: PagesLoginComponent },
   { path: 'pages-register', component: PagesRegisterComponent },
-  { path: 'user-profile', component: UsersProfileComponent },
+  //Beneficiaire Router(Temp)
+  { path: 'beneficiaire-add', component: BeneficiareAddComponent },
+  { path: 'beneficiaire-list', component: BeneficiareListComponent },
 ];
 
 @NgModule({

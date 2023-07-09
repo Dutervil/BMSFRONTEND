@@ -38,6 +38,9 @@ import { PagesRegisterComponent } from './pages/pages-register/pages-register.co
 import { PagesLoginComponent } from './pages/pages-login/pages-login.component';
 import { PagesError404Component } from './pages/pages-error404/pages-error404.component';
 import { PagesBlankComponent } from './pages/pages-blank/pages-blank.component';
+import { BeneficiareAddComponent } from './components/beneficiaire/beneficiare-add/beneficiare-add.component';
+import { BeneficiareListComponent } from './components/beneficiaire/beneficiare-list/beneficiare-list.component';
+import { BeneficiareEditComponent } from './components/beneficiaire/beneficiare-edit/beneficiare-edit.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { PagesBlankComponent } from './pages/pages-blank/pages-blank.component';
     PagesRegisterComponent,
     PagesLoginComponent,
     PagesError404Component,
-    PagesBlankComponent
+    PagesBlankComponent,
+    BeneficiareAddComponent,
+    BeneficiareListComponent,
+    BeneficiareEditComponent
   ],
   imports: [
     BrowserModule,

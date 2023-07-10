@@ -41,6 +41,12 @@ import { PagesBlankComponent } from './pages/pages-blank/pages-blank.component';
 import { BeneficiareAddComponent } from './components/beneficiaire/beneficiare-add/beneficiare-add.component';
 import { BeneficiareListComponent } from './components/beneficiaire/beneficiare-list/beneficiare-list.component';
 import { BeneficiareEditComponent } from './components/beneficiaire/beneficiare-edit/beneficiare-edit.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthenticationService} from "./service/authentication.service";
+import {UserService} from "./service/user.service";
+import {AuthInterceptor} from "./interceptor/auth.interceptor";
+import {AuthenticationGuard} from "./authentication.guard";
+import {NotificationModule} from "./notification.module";
 
 @NgModule({
   declarations: [
@@ -86,9 +92,11 @@ import { BeneficiareEditComponent } from './components/beneficiaire/beneficiare-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NotificationModule
   ],
-  providers: [],
+  providers: [AuthenticationGuard,AuthenticationService,UserService,{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,16 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
        <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
-       <li class="nav-item">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Utilisateur</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li> <a routerLink="/form-elements"> <i class="bi bi-circle"></i><span>Creer Utilisateur </span></a></li>
+          <li> <a routerLink="/form-layouts"> <i class="bi bi-circle"></i><span>Liste Utilisateur</span> </a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Beneficiaire</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
              <li> <a routerLink="/beneficiaire-add"> <i class="bi bi-circle"></i><span>Nouveau Beneficiaire</span> </a></li>
@@ -22,14 +31,6 @@
        </li>
 
 
-     <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Utilisateur</span><i class="bi bi-chevron-down ms-auto"></i> </a>
-          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/form-elements"> <i class="bi bi-circle"></i><span>Creer Utilisateur </span></a></li>
-             <li> <a routerLink="/form-layouts"> <i class="bi bi-circle"></i><span>Liste Utilisateur</span> </a></li>
-
-          </ul>
-       </li>
         <!--  <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

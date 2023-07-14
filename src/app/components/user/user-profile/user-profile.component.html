@@ -1,0 +1,98 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Profile</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item active">Profile</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item"> <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button></li>
+              <li class="nav-item"> <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button></li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
+                <form #profileUserForm="ngForm" (ngSubmit)="onUpdateProfile(profileUserForm)" novalidate>
+                  <div class="row mb-3">
+                    <label  class="col-md-4 col-lg-3 col-form-label">{{user?.username}}</label>
+                    <div class="col-md-5 col-lg-4">
+                      <img src="{{user?.profileImageUrl}}" alt="Profile">
+                      <div class="pt-2"> <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a> <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a></div>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+
+                      <ul>
+                       <ol> <b>Permission</b></ol>
+                        <ol *ngFor="let p of user.authorities">{{p}}</ol>
+                      </ul>
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First name</label>
+                    <div class="col-md-8 col-lg-9"> <input required [(ngModel)]="user.firstName" name="firstName" type="text" class="form-control" id="fullName" value="Jassa"></div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                    <div class="col-md-8 col-lg-9"> <input required [(ngModel)]="user.lastName" name="firstName" type="text" class="form-control" id="company" value="Therichpost"></div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9"> <input required [(ngModel)]="user.email" name="email" type="text" class="form-control" id="Job" value="Web Designer"></div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Status</label>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="form-check">
+                        <input ngModel class="form-check-input" type="checkbox"  [(ngModel)]="user.active" name="isActive" id="active">
+                        <label class="form-check-label" for="active"> Active </label>
+                      </div>
+                      <div class="form-check">
+                        <input ngModel [(ngModel)]="user.isNotLocked" name="isNotLocked" class="form-check-input" type="checkbox" id="gridCheck2">
+                        <label class="form-check-label" for="gridCheck2"> Unlocked</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Role</label>
+                    <div class="col-md-8 col-lg-9">
+                      <select  [(ngModel)]="user.role" name="role" required ngModel="USER_USER" class="form-select" aria-label="Default select example">
+                        <option >Select a role</option>
+                        <option value="ROLE_USER">USER</option>
+                        <option value="ROLE_HR">HR</option>
+                        <option value="ROLE_MANAGER">MANAGER</option>
+                        <option value="ROLE_ADMIN">ADMIN</option>
+                        <option value="ROLE_SUPER_ADMIN">SUPER ADMIN</option>
+                      </select>
+                     </div>
+                  </div>
+
+
+                  <div class="text-center"> <button type="submit" class="btn btn-primary">Save Changes</button></div>
+                </form>
+              </div>
+              <div class="tab-pane fade pt-3" id="profile-change-password">
+                <form>
+                  <div class="row mb-3">
+                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Enter your email</label>
+                    <div class="col-md-8 col-lg-9"> <input name="password" type="password" class="form-control" id="currentPassword"></div>
+                  </div>
+                  <div class="text-center"> <button type="submit" class="btn btn-primary">Change Password</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

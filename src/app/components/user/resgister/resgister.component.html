@@ -1,0 +1,85 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Utilisateur</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Creer un utilisateur</a></li>
+
+
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <form #newUserForm="ngForm"  novalidate (ngSubmit)="addNewUser(newUserForm)" >
+
+            <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                  <input  name="firstName" ngModel required type="text" class="form-control">
+                  <div class="invalid-feedback">Please enter your first name.</div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Prenom</label>
+                <div class="col-sm-10"> <input name="lastName" ngModel required type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Nom d'utilisateur</label>
+                <div class="col-sm-10"> <input required name="username" ngModel type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">E-mail</label>
+                <div class="col-sm-10"> <input required name="email" ngModel type="email" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Role</label>
+                <div class="col-sm-10">
+                  <select name="role" required ngModel="USER_USER" class="form-select" aria-label="Default select example">
+                    <option >Select a role</option>
+                    <option value="ROLE_USER">USER</option>
+                    <option value="ROLE_HR">HR</option>
+                    <option value="ROLE_MANAGER">MANAGER</option>
+                    <option value="ROLE_ADMIN">ADMIN</option>
+                    <option value="ROLE_SUPER_ADMIN">SUPER ADMIN</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Photo Profile</label>
+                <div class="col-sm-10">
+                  <input (change)="onProfileImageChange($event)" class="form-control" type="file" id="formFile">
+                  <label><span [hidden]="true">filename</span></label>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <input ngModel class="form-check-input" type="checkbox" name="isActive" id="active">
+                    <label class="form-check-label" for="active"> Active </label>
+                  </div>
+                  <div class="form-check">
+                    <input ngModel name="isNotLocked" class="form-check-input" type="checkbox" id="gridCheck2">
+                    <label class="form-check-label" for="gridCheck2"> Debloque</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-10">
+                  <button [disabled]="newUserForm.invalid"  type="submit" class="btn btn-primary">+ Creer</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

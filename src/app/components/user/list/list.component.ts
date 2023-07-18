@@ -12,7 +12,9 @@ import {Router} from "@angular/router";
 })
 export class ListComponent implements OnInit {
 
-  public users:any ;
+  public filterText: string = '';
+  public users: User[] = [];
+  public filteredUsers: User[] = [];
   constructor(private notificationService:NotificationService,
     private userService:UserService,private router:Router) { }
 
@@ -23,25 +25,28 @@ export class ListComponent implements OnInit {
 
   }
 
-  public getUsers(showNotification: boolean){
+
+  public getUsers(showNotification: boolean) {
     this.userService.getUsers().subscribe(
-      response=>{
-        console.log(response)
-        this.users=response;
-        if (showNotification){
-          if (this.users.length>0){
-            this.sentErrorNotification(NotificationType.SUCCESS, `${this.users.length} Utilisateur(s) trouve(s)`)
-          }else{
-            this.sentErrorNotification(NotificationType.INFO, `La liste est vide`)
+      response => {
+        console.log(response);
+        this.users = response;
+        this.filteredUsers = this.users; // Initialize filteredUsers with all users
+        if (showNotification) {
+          if (this.users.length > 0) {
+            this.sentErrorNotification(NotificationType.SUCCESS, `${this.users.length} Utilisateur(s) trouve(s)`);
+          } else {
+            this.sentErrorNotification(NotificationType.INFO, `La liste est vide`);
           }
         }
-      },error => {
-       this.sentErrorNotification(NotificationType.ERROR, error.error.message)
+        this.filterUsers(); // Apply initial filtering
+      },
+      error => {
+        this.sentErrorNotification(NotificationType.ERROR, error.error.message);
       }
     );
-
-
   }
+
   sentErrorNotification(error: NotificationType, message: string) {
 
     if (message){
@@ -55,7 +60,23 @@ export class ListComponent implements OnInit {
     this.router.navigateByUrl(`BMS/user/view/${username}`)
 }
 
-  edit(id: string ) {
+  edit(id: any ) {
     this.router.navigateByUrl(`BMS/user/edit/${id}`)
   }
+
+
+  public filterUsers() {
+    console.log("FILTER")
+    if (this.filterText.trim() === '') {
+      // If filter input is empty, show all users
+      this.filteredUsers = this.users;
+    } else {
+      // Filter users based on the input value
+      this.filteredUsers = this.users.filter(user =>
+        user.username.toLowerCase().includes(this.filterText.toLowerCase())
+      );
+    }
+  }
+
 }
+

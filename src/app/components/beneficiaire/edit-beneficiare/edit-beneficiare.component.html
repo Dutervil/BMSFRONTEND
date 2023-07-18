@@ -1,0 +1,120 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Beneficiare</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Modifier Beneficiare</a></li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <br/>
+            <form #beneficiaireForm="ngForm"   (ngSubmit)="updateBeneficiaire(beneficiaireForm,beneficiare.id)" class="row g-3 needs-validation">
+              <div class="row mb-3">
+                <input  disabled type="text" name="id"  ngModel ="{{beneficiare.id}}">
+                <label  class="col-sm-2 col-form-label">Code</label>
+                <div class="col-sm-10">
+                  <input  name="code" [(ngModel)]="beneficiare.code" #code="ngModel"   type="text" class="form-control">
+                  <div class="invalid-feedback" *ngIf="code.invalid && code.touched">Ce champ est requis.</div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                  <input name="nom" [(ngModel)]="beneficiare.nom"   #nom="ngModel"  type="text" class="form-control">
+                  <div class="invalid-feedback" *ngIf="nom.invalid && nom.touched">Ce champ est requis.</div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Prenom</label>
+                <div class="col-sm-10"> <input required [(ngModel)]="beneficiare.prenom" name="prenom"  type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Telephone</label>
+                <div class="col-sm-10"> <input required [(ngModel)]="beneficiare.telephone" name="telephone"  type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Sexe</label>
+                <div class="col-sm-10">
+                  <select name="sexe" [(ngModel)]="beneficiare.sexe" required ngModel class="form-select" aria-label="Default select example">
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Adresse</label>
+                <div class="col-sm-10"> <input [(ngModel)]="beneficiare.adresse" required name="adresse"  type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Date de naissance</label>
+                <div class="col-sm-10"> <input required name="dateNaissance" [(ngModel)]="beneficiare.dateNaissance" type="date" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Niveau d'Etude</label>
+                <div class="col-sm-10"> <input required name="niveauEtude" [(ngModel)]="beneficiare.niveauEtude" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Date d'integration</label>
+                <div class="col-sm-10"> <input required name="dateIntegration" [(ngModel)]="beneficiare.dateIntegration" type="date" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                  <select name="status" required [(ngModel)]="beneficiare.status" class="form-select" aria-label="Default select example">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Type</label>
+                <div class="col-sm-10">
+                  <select name="type" required [(ngModel)]="beneficiare.type" class="form-select" aria-label="Default select example">
+                    <option value="n/a">N/A</option>
+                    <option value="n/a">N/A</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Personne Responsable</label>
+                <div class="col-sm-10"> <input required name="nomPersonneReponse" [(ngModel)]="beneficiare.nomPersonneReponse" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Son Telephone</label>
+                <div class="col-sm-10"> <input required name="phonePersonneResponsable" [(ngModel)]="beneficiare.phonePersonneResponsable" type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Profile Picture</label>
+                <div class="col-sm-10">
+                  <input (change)="onProfileImageChange($event)" class="form-control" type="file" id="formFile">
+                  <label><span [hidden]="true">filename</span></label>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Commentaire</label>
+                <div class="col-sm-10"> <textarea required name="commentaire" [(ngModel)]="beneficiare.commentaire" type="text" class="form-control"></textarea>
+                  <br>
+                  <button [disabled]="beneficiaireForm.invalid"  type="submit" class="btn btn-success">Sauvegarder la modification</button>
+                </div>
+              </div>
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

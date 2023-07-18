@@ -1,58 +1,23 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
+       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Tableau de bord</span> </a></li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Utilisateur</span><i class="bi bi-chevron-down ms-auto"></i> </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li> <a routerLink="/form-elements"> <i class="bi bi-circle"></i><span>Creer Utilisateur </span></a></li>
-          <li> <a routerLink="/form-layouts"> <i class="bi bi-circle"></i><span>Liste Utilisateur</span> </a></li>
+          <li> <a routerLink="/BMS/user/register"> <i class="bi bi-circle"></i><span>Creer </span></a></li>
+          <li> <a routerLink="/BMS/user/list"> <i class="bi bi-circle"></i><span>Lister</span> </a></li>
 
         </ul>
       </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Beneficiaire</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Benficiare</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/beneficiaire-add"> <i class="bi bi-circle"></i><span>Nouveau Beneficiaire</span> </a></li>
-             <li> <a routerLink="/beneficiaire-list"> <i class="bi bi-circle"></i><span>Liste Beneficiaire</span> </a></li>
-             <li> <a routerLink="/badges"> <i class="bi bi-circle"></i><span>Dossier</span> </a></li>
-               <!--  <li> <a routerLink="/breadcrumbs"> <i class="bi bi-circle"></i><span>Breadcrumbs</span> </a></li>
-             <li> <a routerLink="/buttons"> <i class="bi bi-circle"></i><span>Buttons</span> </a></li>
-             <li> <a routerLink="/cards"> <i class="bi bi-circle"></i><span>Cards</span> </a></li>
-             <li> <a routerLink="/carousel"> <i class="bi bi-circle"></i><span>Carousel</span> </a></li>
-             <li> <a routerLink="/list-group"> <i class="bi bi-circle"></i><span>List group</span> </a></li>
-             <li> <a routerLink="/modal"> <i class="bi bi-circle"></i><span>Modal</span> </a></li>
-             <li> <a routerLink="/tabs"> <i class="bi bi-circle"></i><span>Tabs</span> </a></li>
-             <li> <a routerLink="/pagination"> <i class="bi bi-circle"></i><span>Pagination</span> </a></li>
-             <li> <a routerLink="/progress"> <i class="bi bi-circle"></i><span>Progress</span> </a></li>
-             <li> <a routerLink="/spinners"> <i class="bi bi-circle"></i><span>Spinners</span> </a></li>
-             <li> <a routerLink="/tooltips"> <i class="bi bi-circle"></i><span>Tooltips</span> </a></li> -->
+             <li> <a routerLink="/BMS/beneficiaire-add"> <i class="bi bi-plus-circle"></i><span>Nouveau</span> </a></li>
+             <li> <a routerLink="/BMS/beneficiaire-list"> <i class="bi bi-list"></i><span>Lister</span> </a></li>
           </ul>
        </li>
 
-
-        <!--  <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i> </a>
-          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/tables-general"> <i class="bi bi-circle"></i><span>General Tables</span> </a></li>
-             <li> <a routerLink="/tables-data"> <i class="bi bi-circle"></i><span>Data Tables</span> </a></li>
-          </ul>
-       </li> -->
-       <!-- <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i> </a>
-          <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/charts-chartjs"> <i class="bi bi-circle"></i><span>Chart.js</span> </a></li>
-             <li> <a routerLink="/charts-apexcharts"> <i class="bi bi-circle"></i><span>ApexCharts</span> </a></li>
-          </ul>
-       </li> -->
-       <!-- <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i> </a>
-          <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/icons-bootstrap"> <i class="bi bi-circle"></i><span>Bootstrap Icons</span> </a></li>
-             <li> <a routerLink="/icons-remix"> <i class="bi bi-circle"></i><span>Remix Icons</span> </a></li>
-             <li> <a routerLink="/icons-boxicons"> <i class="bi bi-circle"></i><span>Boxicons</span> </a></li>
-          </ul>
-       </li> -->
 
     </ul>
  </aside>

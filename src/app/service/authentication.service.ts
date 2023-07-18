@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/User";
 import {JwtHelperService} from "@auth0/angular-jwt";
@@ -15,11 +15,12 @@ export class AuthenticationService {
   private loggedInUsername: any;
   private token: any;
   private jwtHelper=new  JwtHelperService();
+  private contentHeader = new HttpHeaders({ "Content-Type":"application/json" });
   constructor(private http:HttpClient) { }
 
 
-  public login(user: User): Observable<HttpResponse<any> | HttpErrorResponse>{
-    return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.baseUrl}user/login`,user,{observe: 'response'});
+  public login(user: User): Observable<any>{
+    return this.http.post(`${this.baseUrl}user/login`,user,{ headers: this.contentHeader, observe: 'response' });
   }
 
   public register(user: User): Observable<User | HttpErrorResponse>{
@@ -33,8 +34,9 @@ export class AuthenticationService {
     localStorage.removeItem('token')
     localStorage.removeItem('users')
   }
-  public saveToken(token : string){
+  public saveToken(token: string | null){
     this.token=token;
+    // @ts-ignore
     localStorage.setItem("token",token)
   }
   public addUserToLocalCache(user: User){

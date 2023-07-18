@@ -15,14 +15,18 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  public getUsers():Observable<User[] | HttpErrorResponse>{
+  public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}user/list`);
   }
+
 
   public addUser(formData: FormData): Observable<User | HttpErrorResponse>{
     return this.http.post<User>(`${this.baseUrl}user/add`,formData)
   }
 
+  public findUser(id: String): Observable<User | HttpErrorResponse>{
+    return this.http.get<User>(`${this.baseUrl}user/find/${id}`)
+  }
   public UpdateUser(formData: FormData): Observable<User | HttpErrorResponse>{
     return this.http.put<User>(`${this.baseUrl}user/update`,formData)
   }
@@ -41,7 +45,7 @@ export class UserService {
     return this.http.get<CustomHttpResponse>(`${this.baseUrl}user/delete/${id}`)
   }
 
-  public addUserToLocalCache(users: User[]){
+  public addUserToLocalCache(users: User[] | HttpErrorResponse){
     localStorage.setItem("users",JSON.stringify(users))
   }
 
@@ -61,8 +65,8 @@ export class UserService {
     formData.append("email",user.email);
     formData.append("role",user.role);
     formData.append("profileImage",profileImage);
-    formData.append("isActive",JSON.stringify(user.isActive));
-    formData.append("isNonLocked",JSON.stringify(user.isNotLocked));
+    formData.append("isActive",JSON.stringify(user.active));
+    formData.append("isNonLocked",JSON.stringify(user.notLocked));
    return formData;
   }
 

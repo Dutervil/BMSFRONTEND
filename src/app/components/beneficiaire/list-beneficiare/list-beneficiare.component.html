@@ -1,0 +1,44 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Beneficiaires</h1>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <br/>
+            <input class="form-control" type="text" [(ngModel)]="filterText" (keyup)="filterUsers()" placeholder="Rechercher un beneficiaire">
+            <br>
+            <table class="table datatable">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Code</th>
+                <th scope="col">Nom Complet</th>
+                <th  colspan="2" scope="col">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr *ngFor="let b of filteredBeneficiaire" >
+                <td><img style="width: 35px" src="{{b.imageUrl}}"></td>
+                <td>{{b?.code}}</td>
+                <td> {{b.nom}} {{b.prenom}}</td>
+                <td>
+                  <button  (click)="view(b.id)"  class="btn btn-success"><i class="bi bi-eye"></i></button>&nbsp;
+                  <button  (click)="delete(b.id)"  class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+

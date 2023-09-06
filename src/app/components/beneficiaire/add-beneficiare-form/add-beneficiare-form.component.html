@@ -1,9 +1,9 @@
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Beneficiare</h1>
+    <h1>Bénéficiaire</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/">Nouveau Beneficiare</a></li>
+        <li class="breadcrumb-item"><a routerLink="/">Nouveau Bénéficiaire</a></li>
       </ol>
     </nav>
   </div>
@@ -63,7 +63,7 @@
 
               <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">Date d'integration</label>
-                <div class="col-sm-10"> <input required name="dateIntegration" ngModel type="text" class="form-control"></div>
+                <div class="col-sm-10"> <input required name="dateIntegration" ngModel type="date" class="form-control"></div>
               </div>
 
               <div class="row mb-3">
@@ -87,6 +87,21 @@
               <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">Personne Responsable</label>
                 <div class="col-sm-10"> <input required name="nomPersonneReponse" ngModel type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Numero de Compte Bancaire</label>
+                <div class="col-sm-10"> <input required name="numeroCompte" ngModel type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Telephone Moncash</label>
+                <div class="col-sm-10"> <input required name="numeroMoncash" ngModel type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Entrer le nom de son groupe</label>
+                <div class="col-sm-10"> <input required name="groupe" ngModel type="text" class="form-control"></div>
               </div>
 
               <div class="row mb-3">

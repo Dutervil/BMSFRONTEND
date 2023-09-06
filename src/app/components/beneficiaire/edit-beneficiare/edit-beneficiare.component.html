@@ -90,6 +90,20 @@
               </div>
 
               <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Numero de Compte Bancaire</label>
+                <div class="col-sm-10"> <input required name="numeroCompte" [(ngModel)]="beneficiare.numeroCompte" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Telephone Moncash</label>
+                <div class="col-sm-10"> <input required name="numeroMoncash" [(ngModel)]="beneficiare.moncashNumber" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Entrer le nom de son groupe</label>
+                <div class="col-sm-10"> <input required name="groupe" [(ngModel)]="beneficiare.groupe" type="text" class="form-control"></div>
+              </div>
+              <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">Son Telephone</label>
                 <div class="col-sm-10"> <input required name="phonePersonneResponsable" [(ngModel)]="beneficiare.phonePersonneResponsable" type="text" class="form-control"></div>
               </div>

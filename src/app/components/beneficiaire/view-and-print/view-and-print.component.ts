@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {NotificationService} from "../../../notification.service";
-import {UserService} from "../../../service/user.service";
-import {BeneficiaireService} from "../../../service/beneficiaire.service";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NotificationType} from "../../../enum/notification-type.enum";
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
+import {ActivatedRoute, Router} from "@angular/router";
 import {DepenceService} from "../../../service/depence.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ViewAndPrintComponent} from "../view-and-print/view-and-print.component";
-registerLocaleData(localeFr, 'fr');
+import {NotificationService} from "../../../notification.service";
+import {BeneficiaireService} from "../../../service/beneficiaire.service";
 
 @Component({
-  selector: 'app-view-beneficiare',
-  templateUrl: './view-beneficiare.component.html',
-  styleUrls: ['./view-beneficiare.component.css']
+  selector: 'app-view-and-print',
+  templateUrl: './view-and-print.component.html',
+  styleUrls: ['./view-and-print.component.css']
 })
-export class ViewBeneficiareComponent implements OnInit {
-
+export class ViewAndPrintComponent implements OnInit {
+  // @ts-ignore
+  @ViewChild('print') printableContent: ElementRef ;
   beneficiare:any;
   depence:any=[]
   amounts:any=[];
@@ -57,23 +53,28 @@ export class ViewBeneficiareComponent implements OnInit {
 
   getExpences(){
     let id =this.route.snapshot.paramMap.get("id");
-     this.depenceService.getDepencesByBeneficiaireId(id).subscribe(
-       response=>{
-         this.depence=response;
-         response.map((e:any)=>{
-           this.amounts.push(e.montant)
-         })
+    this.depenceService.getDepencesByBeneficiaireId(id).subscribe(
+      response=>{
+        this.depence=response;
+        response.map((e:any)=>{
+          this.amounts.push(e.montant)
+        })
         this.total =  this.amounts.reduce((accumulator: number, input: number): number => accumulator + input);
         console.log(this.total);
 
-       },error => {
-         console.log(error)
-       }
-     )
+      },error => {
+        console.log(error)
+      }
+    )
   }
 
-  openReport() {
-    let id =this.route.snapshot.paramMap.get("id")
-    this.router.navigateByUrl(`BMS/expences/report/${id}`)
+  printElement() {
+    // @ts-ignore
+    const printContents = this.printableContent.nativeElement.innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
   }
 }

@@ -1,0 +1,17 @@
+.print{
+
+  font-size: 12pt;
+  height: 900px;  /* You'll need to play with this value */
+  page-break-after: always; /* Always insert page break after this element */
+  page-break-inside: avoid; /* Please don't break my page content up browser */
+
+}
+@media print {
+  .app-name {
+    display: none !important; /* Hide the app name */
+  }
+
+  .footer-date {
+    display: none !important; /* Hide the date */
+  }
+}

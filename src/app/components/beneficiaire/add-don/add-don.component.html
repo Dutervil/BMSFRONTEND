@@ -1,0 +1,103 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Gestion des Dépences</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Ajouter une dépence a un beneficiare</a></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <br>
+            <form [formGroup]="expenseForm" (ngSubmit)="saveDepence()" >
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Selectionner Bénéficiaire</label>
+                <div class="col-sm-10">
+                  <select  formControlName="beneficiareId" required  class="form-select" aria-label="Default select example">
+                    <option *ngFor="let b of beneficiaire"  value="{{b.id}}">{{b.nom}} {{b.prenom}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Type de dépence </label>
+                <div class="col-sm-10">
+                  <select  formControlName="typeDepence"   required   class="form-select" aria-label="Default select example">
+                    <option *ngFor="let t of typeDepences" value="{{t}}">{{t}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Montant</label>
+                <div class="col-sm-10"> <input  formControlName="montant"  type="number" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Moyen de paiement </label>
+                <div class="col-sm-10">
+                  <select  (change)="expencesTypeCheck($event)"    class="form-select" aria-label="Default select example">
+                    <option *ngFor="let e of expencesType" value="{{e}}">{{e}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div  class="row mb-3">
+                <label  class="col-sm-2 col-form-label"><b>Versement</b></label>
+                <div class="col-sm-10"> <input formControlName="versement"    type="number" class="form-control"></div>
+              </div>
+              <div *ngIf="showBank" class="row mb-3">
+                <label  class="col-sm-2 col-form-label"><b>Numero Compte</b></label>
+                <div class="col-sm-10"> <input style="background-color: #1475c1;color: white;" formControlName="accountNumber" type="text" class="form-control"></div>
+              </div>
+
+              <div *ngIf="showMoncash" class="row mb-3">
+                <label  class= "col-sm-2 col-form-label"><b>Numero Moncash</b></label>
+                <div class="col-sm-10"> <input style="background-color: #1475c1;color: white;"   formControlName="moncashNumber" type="text" class="form-control"></div>
+              </div>
+              <div  class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Numero Cheque</label>
+                <div class="col-sm-10"> <input   formControlName="numeroCheque" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Unite Monaitaire </label>
+                <div class="col-sm-10">
+                  <select  formControlName="uniteMonetaire"  class="form-select" aria-label="Default select example">
+                    <option *ngFor="let c of currencies" value="{{c}}">{{c}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Nom du cheque</label>
+                <div class="col-sm-10"> <input formControlName="nomCheque" type="text" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10"> <input  formControlName="dateDepence" type="date" class="form-control"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                  <textarea  formControlName="description" type="text" class="form-control"> </textarea>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-10">
+                  <button  type="submit" class="btn btn-primary">+ Ajouter</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

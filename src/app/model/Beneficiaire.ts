@@ -15,7 +15,10 @@ export  class Beneficiaire{
   public  dateIntegration:string;
   public  commentaire:string;
   public  type:string;
-  public  status:string
+  public  status:string;
+  public numeroCompte:string;
+  public numeroMoncash:string;
+  public groupe:string;
 
   constructor() {
     this.dateIntegration='';
@@ -33,7 +36,10 @@ export  class Beneficiaire{
     this.nom='';
     this.prenom='';
     this.sexe='';
-    this.type=''
+    this.type='';
+    this.numeroCompte='';
+    this.numeroMoncash=''
+    this.groupe=''
   }
 
 }

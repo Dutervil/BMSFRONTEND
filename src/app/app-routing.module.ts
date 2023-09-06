@@ -16,6 +16,9 @@ import {ViewBeneficiareComponent} from "./components/beneficiaire/view-beneficia
 import {EditBeneficiareComponent} from "./components/beneficiaire/edit-beneficiare/edit-beneficiare.component";
 import {AuthenticationGuard} from "./authentication.guard";
 import {EditUserComponent} from "./components/user/edit-user/edit-user.component";
+import {AddDonComponent} from "./components/beneficiaire/add-don/add-don.component";
+import {AddDocComponent} from "./components/beneficiaire/add-doc/add-doc.component";
+import {ViewAndPrintComponent} from "./components/beneficiaire/view-and-print/view-and-print.component";
 
 
 
@@ -36,6 +39,9 @@ const routes: Routes = [
     { path: 'beneficiaire-list', component: ListBeneficiareComponent },
     { path: 'beneficiaire-view/:id', component: ViewBeneficiareComponent },
     { path: 'beneficiaire-edit/:id', component: EditBeneficiareComponent },
+    { path: 'expences/report/:id', component: ViewAndPrintComponent },
+    { path: 'beneficiaire/don', component: AddDonComponent },
+    { path: 'beneficiaire/doc', component: AddDocComponent },
 
   ]},
 

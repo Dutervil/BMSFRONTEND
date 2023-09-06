@@ -54,6 +54,10 @@ export class BeneficiaireService {
     formData.append("type",beneficiaire.type);
     formData.append("adresse",beneficiaire.adresse);
     formData.append("commentaire",beneficiaire.commentaire);
+
+    formData.append("numeroCompte",beneficiaire.numeroCompte);
+    formData.append("numeroMoncash",beneficiaire.numeroMoncash);
+    formData.append("groupe",beneficiaire.groupe);
     formData.append("profileImage",profileImage);
 
     return formData;

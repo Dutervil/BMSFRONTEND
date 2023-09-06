@@ -15,6 +15,8 @@ import {FormsModule} from "@angular/forms";
 import { AdminModuleModule } from './admin/admin-module.module';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {EditorModule} from "@tinymce/tinymce-angular";
+// import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -33,6 +35,7 @@ import {MatIconModule} from "@angular/material/icon";
         AdminModuleModule,
         MatButtonModule,
         MatIconModule,
+      EditorModule,
 
 
     ],

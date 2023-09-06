@@ -15,18 +15,25 @@
                 <span  [hidden]="user.active" class="badge bg-danger"><i class="bi bi- me-1"></i> Inactive</span>
                 &nbsp;
               </li>
-              <li class="list-group-item"> Joined <span class="badge bg-info">{{user.joinDate}}</span></li>
+              <li class="list-group-item">
+                <button mat-raised-button>Permissions</button>
+              </li>
+              <br>
+              <ul>
+                <mat-chip-list>
+                  <mat-chip  *ngFor="let p of permissions">{{p}}</mat-chip>
+                </mat-chip-list>
+
+              </ul>
+              <li class="list-group-item"> Joined <span class="badge bg-dark">{{user.joinDate |date}}</span></li>
               <li class="list-group-item"> Last Login <span class="badge bg-warning">{{user.lastLoginDateDisplay}}</span></li>
               <li class="list-group-item"> Locked/Unlocked
                 <span  [hidden]="!user.notLocked" class="badge bg-success"><i class="bi bi-unlock me-1"></i> </span>
                 <span  [hidden]="user.notLocked" class="badge bg-danger"><i class="bi bi-lock me-1"></i> </span>
               </li>
             </ul>
-            <ul>
-              <li *ngFor="let p of permissions ">{{p}}</li>
 
-            </ul>
-            <button  class="btn btn-success">Make some changes</button>
+
           </div>
         </div>
       </div>

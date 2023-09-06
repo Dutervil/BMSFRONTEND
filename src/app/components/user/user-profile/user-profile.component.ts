@@ -14,10 +14,16 @@ import {NgForm} from "@angular/forms";
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,private notificationService:NotificationService,
+  constructor(private route:ActivatedRoute,
+              private router:Router,
+              private notificationService:NotificationService,
   private userService:UserService) { }
   user:any
   permissions:any=[];
+  // @ts-ignore
+  profileImage:File;
+  // @ts-ignore
+  fileName:string
   ngOnInit(): void {
     this.getUser();
   }
@@ -46,5 +52,28 @@ export class UserProfileComponent implements OnInit {
 
   onUpdateProfile(profileUserForm: NgForm) {
 
+
+    const formData=this.userService.createUserFormData(
+      '',profileUserForm.value,this.profileImage
+    )
+    this.userService.UpdateUser(formData).subscribe(
+      (response)=>{
+        // @ts-ignore
+        this.profileImage=null;
+        // @ts-ignore
+        this.fileName=null;
+        this.router.navigateByUrl("BMS/user/list")
+        this.sentErrorNotification(NotificationType.SUCCESS,"User updated successfully");
+      },
+      error => {
+        this.sentErrorNotification(NotificationType.ERROR, error.error.message)
+      }
+    )
+    console.log(formData);
+
+  }
+  public onProfileImageChange(event: any): void{
+    this.profileImage=event.target.files[0];
+    this.fileName=event.target.files[0].name;
   }
 }

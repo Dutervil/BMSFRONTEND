@@ -1,6 +1,6 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Tableau de bord</span> </a></li>
+       <li class="nav-item"> <a class="nav-link " routerLink="/"> <i class="bi bi-grid"></i> <span>Tableau de bord</span> </a></li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Utilisateur</span><i class="bi bi-chevron-down ms-auto"></i> </a>
@@ -11,10 +11,12 @@
         </ul>
       </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Benficiare</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Bénéficiaire</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
              <li> <a routerLink="/BMS/beneficiaire-add"> <i class="bi bi-plus-circle"></i><span>Nouveau</span> </a></li>
              <li> <a routerLink="/BMS/beneficiaire-list"> <i class="bi bi-list"></i><span>Lister</span> </a></li>
+             <li> <a routerLink="/BMS/beneficiaire/don"> <i class="bi bi-currency-dollar"></i><span>Dépences</span> </a></li>
+             <li> <a routerLink="/BMS/beneficiaire/doc"> <i class="bi bi-currency-dollar"></i><span>Dossier</span> </a></li>
           </ul>
        </li>
 

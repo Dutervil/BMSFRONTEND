@@ -33,6 +33,28 @@ export class ResgisterComponent implements OnInit {
   public onProfileImageChange(event: any): void{
    this.profileImage=event.target.files[0];
    this.fileName=event.target.files[0].name;
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      const progress_bar_container=document.querySelector('.progress-bar-container');
+      const fileInput = document.getElementById('fileInput');
+      const progressBar = document.querySelector('.progress-bar');
+      const previewImage = document.getElementById('previewImage');
+      reader.addEventListener('load', (e) => {
+        // @ts-ignore
+        const percentage = (e.loaded / e.total) * 100;
+        // @ts-ignore
+        progress_bar_container.style.display = 'block';
+        // @ts-ignore
+        progressBar.style.width = percentage + '%';
+        // @ts-ignore
+        previewImage.setAttribute('src', e.target.result);
+        // @ts-ignore
+        previewImage.style.display = 'block';
+      });
+
+      reader.readAsDataURL(file);
+    }
   }
 
   addNewUser(userForm:NgForm) :void {

@@ -50,10 +50,19 @@
               </div>
 
               <div class="row mb-3">
-                <label  class="col-sm-2 col-form-label">Photo Profile</label>
+                <label  class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                  <input (change)="onProfileImageChange($event)" class="form-control" type="file" id="formFile">
-                  <label><span [hidden]="true">filename</span></label>
+<!--                  <input (change)="onProfileImageChange($event)" class="form-control" type="file" id="formFile">-->
+<!--                  <label><span [hidden]="true">filename</span></label><br>-->
+
+                  <div class="upload-container">
+                    <label for="fileInput" class="upload-btn"> <i class="bi-file-arrow-up"></i> Photo Profile</label>
+                    <input (change)="onProfileImageChange($event)" type="file" id="fileInput" accept="image/*" style="display:none;">
+                    <div class="progress-bar-container">
+                      <div class="progress-bar"></div>
+                    </div>
+                    <img id="previewImage" src="" alt="Uploaded Image">
+                  </div>
                 </div>
               </div>
 

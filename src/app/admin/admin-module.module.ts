@@ -11,7 +11,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {ListComponent} from "../components/user/list/list.component";
 import {ResgisterComponent} from "../components/user/resgister/resgister.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserProfileComponent} from "../components/user/user-profile/user-profile.component";
 import {
   AddBeneficiareFormComponent
@@ -25,6 +25,14 @@ import {EditUserComponent} from "../components/user/edit-user/edit-user.componen
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {LoginComponent} from "../components/user/login/login.component";
+import {ViewUserComponent} from "../components/user/view-user/view-user.component";
+import {MatChipsModule} from "@angular/material/chips";
+import {AddDonComponent} from "../components/beneficiaire/add-don/add-don.component";
+import {AddDocComponent} from "../components/beneficiaire/add-doc/add-doc.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ViewAndPrintComponent} from "../components/beneficiaire/view-and-print/view-and-print.component";
+
+
 
 
 
@@ -43,6 +51,10 @@ import {LoginComponent} from "../components/user/login/login.component";
     ViewBeneficiareComponent,
     EditUserComponent,
     EditBeneficiareComponent,
+    ViewUserComponent,
+    AddDonComponent,
+    AddDocComponent
+    ,ViewAndPrintComponent
 
   ],
   imports: [
@@ -55,7 +67,10 @@ import {LoginComponent} from "../components/user/login/login.component";
     MatButtonModule,
     MatTabsModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatDialogModule
 
   ]
 })

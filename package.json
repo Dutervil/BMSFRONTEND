@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^14.0.0",
+
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
@@ -20,8 +20,10 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@auth0/angular-jwt": "^5.1.2",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "angular-notifier": "^12.0.0",
     "rxjs": "~7.5.0",
+    "tinymce": "^6.6.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

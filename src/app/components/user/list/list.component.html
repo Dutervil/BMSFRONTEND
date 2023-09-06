@@ -49,6 +49,11 @@
 
               </tbody>
             </table>
+            <div class="pagination float-end">
+              <button mat-raised-button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">&#9197;</button>
+              <li class="page-item"><a class="page-link" >{{ currentPage }} / {{ pageSize }}</a></li>
+              <button  mat-raised-button [disabled]="currentPage === pageSize" (click)="goToPage(currentPage + 1)">&#10140;</button>
+            </div>
           </div>
         </div>
       </div>

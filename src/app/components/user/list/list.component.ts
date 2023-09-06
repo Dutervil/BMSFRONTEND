@@ -15,6 +15,9 @@ export class ListComponent implements OnInit {
   public filterText: string = '';
   public users: User[] = [];
   public filteredUsers: User[] = [];
+  public pageSize: number = 10; // Number of items to display per page
+  public currentPage: number = 1; // Current page number
+  public totalItems: number = 0;
   constructor(private notificationService:NotificationService,
     private userService:UserService,private router:Router) { }
 
@@ -31,6 +34,14 @@ export class ListComponent implements OnInit {
       response => {
         console.log(response);
         this.users = response;
+        this.totalItems=this.users.length;
+        this.pageSize = Math.ceil(this.totalItems / this.pageSize);
+        // If the current page exceeds the total pages, reset it to the last page
+        if (this.currentPage > this.pageSize) {
+          this.currentPage = this.pageSize;
+        }
+        this.updateFilteredBeneficiaire();
+
         this.filteredUsers = this.users; // Initialize filteredUsers with all users
         if (showNotification) {
           if (this.users.length > 0) {
@@ -77,6 +88,17 @@ export class ListComponent implements OnInit {
       );
     }
   }
+  public updateFilteredBeneficiaire() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.filteredUsers = this.users.slice(startIndex, endIndex);
+  }
 
+  public goToPage(pageNumber: number) {
+    if (pageNumber >= 1 && pageNumber <= this.pageSize) {
+      this.currentPage = pageNumber;
+      this.updateFilteredBeneficiaire();
+    }
+  }
 }
 

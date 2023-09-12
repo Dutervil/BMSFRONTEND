@@ -19,8 +19,7 @@
                          <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-cart"></i></div>
                             <div class="ps-3">
-                               <h6>145</h6>
-                               <span class="text-success small pt-1 fw-bold">7</span> <span class="text-muted small pt-2 ps-1">Actives</span>
+                               <h6>{{stats?.user}}</h6>
                             </div>
                          </div>
                       </div>
@@ -33,8 +32,7 @@
                          <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-currency-dollar"></i></div>
                             <div class="ps-3">
-                               <h6>$3,264</h6>
-                               <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">de notre budget</span>
+                               <h6>{{stats?.depence | number}}</h6>
                             </div>
                          </div>
                       </div>
@@ -47,8 +45,7 @@
                          <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-people"></i></div>
                             <div class="ps-3">
-                               <h6>1244</h6>
-                               <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1"> de Don</span>
+                               <h6>{{stats?.beneficiaire}}</h6>
                             </div>
                          </div>
                       </div>
@@ -67,8 +64,17 @@
                          </ul>
                       </div>
                       <div class="card-body">
-                         <h5 class="card-title">Statistiques de paiement <span>/Programme</span></h5>
-                         <div id="reportsChart"></div>
+                         <h5 class="card-title">Statistiques</h5>
+                          <div class="charts">
+                            <div class="chart-content">
+                              <h1>Expences By Type</h1>
+                              <canvas width="400" height="400" id="barchart"></canvas>
+                            </div>
+                            <div class="chart-content">
+                              <h1>Active / Inactive</h1>
+                              <canvas width="400" height="400" id="piechart"></canvas>
+                            </div>
+                          </div>
                       </div>
                    </div>
                 </div>

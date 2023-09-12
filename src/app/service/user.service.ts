@@ -24,8 +24,8 @@ export class UserService {
     return this.http.post<User>(`${this.baseUrl}user/add`,formData)
   }
 
-  public findUser(id: String): Observable<User | HttpErrorResponse>{
-    return this.http.get<User>(`${this.baseUrl}user/find/${id}`)
+  public findUser(username: String): Observable<User | HttpErrorResponse>{
+    return this.http.get<User>(`${this.baseUrl}user/find/${username}`)
   }
   public UpdateUser(formData: FormData): Observable<User | HttpErrorResponse>{
     return this.http.put<User>(`${this.baseUrl}user/update`,formData)

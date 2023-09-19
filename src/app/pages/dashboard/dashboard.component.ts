@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {DashboardService} from "../../service/dashboard.service";
 import { Chart, registerables  } from 'node_modules/chart.js'
+import {BeneficiaireService} from "../../service/beneficiaire.service";
 Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef, private _dashboardService:DashboardService) { }
+  constructor(private elementRef: ElementRef, private _dashboardService:DashboardService,private _beneService:BeneficiaireService) { }
 
   stats:any;
 
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
     this.getCountByTypeDepence();
     this.getStatisticAmount();
     this.getActive();
+    this.getStatusStats();
 
   }
 
@@ -68,7 +70,7 @@ export class DashboardComponent implements OnInit {
       data: {
         labels: ['Active',  'Inactive'],
         datasets: [{
-          label: '# of Votes',
+          label: 'Beneficiary',
           data: [12, 19],
           backgroundColor: [
             '#fc9803',
@@ -103,7 +105,15 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-
+getStatusStats(){
+    this._beneService.getStatusInfo().subscribe(
+      resp=>{
+        console.log(resp)
+      },error => {
+        console.log(error)
+      }
+    )
+}
 
 
 }

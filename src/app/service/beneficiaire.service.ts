@@ -35,6 +35,9 @@ export class BeneficiaireService {
     return this.http.delete<any>(`${this.baseUrl}beneficiaire/${id}`)
   }
 
+  public  getStatusInfo():Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}beneficiaire/status/statistic`)
+  }
 
 
   public createUserFormData(id:string,beneficiaire: Beneficiaire, profileImage:File):FormData{

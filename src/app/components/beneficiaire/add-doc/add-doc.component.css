@@ -80,4 +80,22 @@ select {
 select {
   cursor: pointer;
 }
+.styled-button {
+  text-decoration: underline;
+  color: #4471c1;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Style the file input to be hidden */
+.file-input {
+  display: none;
+}
+.input_content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
 

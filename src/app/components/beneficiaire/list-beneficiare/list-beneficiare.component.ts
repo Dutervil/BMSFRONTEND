@@ -83,4 +83,7 @@ export class ListBeneficiareComponent implements OnInit {
       }
     }
 
+  viewdoc(id: number) {
+    this.router.navigateByUrl(`BMS/beneficiaire-view/doc/${id}`)
+  }
 }

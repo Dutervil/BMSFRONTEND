@@ -31,6 +31,7 @@ import {AddDonComponent} from "../components/beneficiaire/add-don/add-don.compon
 import {AddDocComponent} from "../components/beneficiaire/add-doc/add-doc.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ViewAndPrintComponent} from "../components/beneficiaire/view-and-print/view-and-print.component";
+import {DocsComponent} from "../components/beneficiaire/docs/docs.component";
 
 
 
@@ -54,7 +55,7 @@ import {ViewAndPrintComponent} from "../components/beneficiaire/view-and-print/v
     ViewUserComponent,
     AddDonComponent,
     AddDocComponent
-    ,ViewAndPrintComponent
+    ,ViewAndPrintComponent,DocsComponent
 
   ],
   imports: [

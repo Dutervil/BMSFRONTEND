@@ -39,6 +39,9 @@ export class BeneficiaireService {
     return this.http.get<any>(`${this.baseUrl}beneficiaire/status/statistic`)
   }
 
+  public  getDocs(id:any):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}dossier/get/${id}`)
+  }
 
   public createUserFormData(id:string,beneficiaire: Beneficiaire, profileImage:File):FormData{
     const formData=new FormData();

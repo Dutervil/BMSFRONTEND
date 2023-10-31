@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpEventType, HttpRequest} from "@angular/common/http";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {NotificationType} from "../../../enum/notification-type.enum";
+import {BeneficiaireService} from "../../../service/beneficiaire.service";
+import {NotificationService} from "../../../notification.service";
+import {Beneficiaire} from "../../../model/Beneficiaire";
 
 @Component({
   selector: 'app-add-doc',
@@ -9,20 +13,23 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 })
 export class AddDocComponent implements OnInit {
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(private http: HttpClient, private notificationService:NotificationService,
+              private sanitizer: DomSanitizer,private beneService:BeneficiaireService,) {
   }
-
+  public beneficiaire: Beneficiaire[] = []
   selectedFile: File | null = null;
   uploadProgress = 0;
   pdfPreviewUrl: SafeResourceUrl | null = null; // Use SafeResourceUrl
+  isUpload:boolean=false;
 
+  userId:any;
+  docTitle:any;
   ngOnInit(): void {
+    this.getBeneficiares(true);
   }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-
-    // Display the PDF preview when a PDF file is selected
     if (this.selectedFile && this.selectedFile.type === 'application/pdf') {
       this.readAndPreviewPdf();
     } else {
@@ -34,28 +41,32 @@ export class AddDocComponent implements OnInit {
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
-      formData.append('userId', 'your_user_id');
-      const req = new HttpRequest('POST', 'your_backend_url_here', formData, {
-        reportProgress: true // This enables progress tracking.
-      });
+      formData.append('userId', this.userId);
+      formData.append('title', this.docTitle);
 
-      this.http.request(req).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          // @ts-ignore
-          this.uploadProgress = Math.round((100 * event.loaded) / event.total);
-        } else if (event.type === HttpEventType.Response) {
+        this.http.post('http://localhost:8181/dossier/upload', formData, {
+          reportProgress: true,
+          observe: 'events' // This enables progress tracking.
+        }).subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            // @ts-ignore
+            this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+            this.pdfPreviewUrl = null;
+          } else if (event.type === HttpEventType.Response) {
 
-          console.log('File upload complete:', event.body);
-        }
-      });
-    } else {
-      console.error('No file selected.');
-    }
+            console.log('File upload complete:', event.body);
+          }
+        }, error => {
+          console.error('Error uploading the file:', error);
+        });
+      }
+
+
   }
 
   readAndPreviewPdf() {
     const reader = new FileReader();
-
+    this.isUpload=true;
     reader.onload = (e: any) => {
       // Sanitize and set the PDF data URL as a SafeResourceUrl
       this.pdfPreviewUrl = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result);
@@ -67,5 +78,34 @@ export class AddDocComponent implements OnInit {
 
     // @ts-ignore
     reader.readAsDataURL(this.selectedFile);
+  }
+
+  getBeneficiares(showNotification: boolean){
+    this.beneService.listBeneficiaire().subscribe(
+      response => {
+        console.log(response);
+        this.beneficiaire = response;
+
+        if (showNotification) {
+          if (this.beneficiaire.length > 0) {
+            this.sentErrorNotification(NotificationType.SUCCESS, `${this.beneficiaire.length} beneficiaire(s) trouve(s)`);
+          } else {
+            this.sentErrorNotification(NotificationType.INFO, `La liste est vide`);
+          }
+        }
+      },
+      error => {
+        this.sentErrorNotification(NotificationType.ERROR, error.error.message);
+      }
+    );
+  }
+
+  sentErrorNotification(error: NotificationType, message: string) {
+
+    if (message){
+      this.notificationService.notify(error,message)
+    }else{
+      this.notificationService.notify(error,"AN ERROR OCCURED. PLEASE TRY AGAIN")
+    }
   }
 }

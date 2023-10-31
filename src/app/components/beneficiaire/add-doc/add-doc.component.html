@@ -17,15 +17,26 @@
 
              <p>Voulez-vous attacher un fichier pour ce beneficiare ?</p>
             <small><b>Attention:</b>le titre duchier doit etre son nom</small>
-             <label  (click)="uploadFile()" for="file-input" class="styled-button">Selectionner un ficher [Only .pdf extention required]</label>
+             <div class="d-flex justify-content-between align-items-center">
+               <label  for="file-input" class="styled-button">Selectionner un ficher [Only .pdf extention required]</label>
+            <div *ngIf="isUpload"  class="col-3">
+              <input [(ngModel)]="docTitle" class="form-control" placeholder="Donner un titre pour ce document">
+            </div>
+               <div *ngIf="isUpload"  class="col-3">
+                 <select  [(ngModel)]="userId"  required  class="form-select" aria-label="Default select example">
+                   <option *ngFor="let b of beneficiaire"  value="{{b.id}}">{{b.nom}} {{b.prenom}}</option>
+                 </select>
+               </div>
+               <button (click)="uploadFile()" *ngIf="isUpload" class="btn btn-primary">Enregistrer le fichier</button>
+             </div>
             <input  accept="application/pdf" (change)="onFileSelected($event)" #fileInput type="file" id="file-input" class="file-input">
             <div class="progress-container">
               <div class="progress-bar" [style.width]="uploadProgress + '%'">
                 {{ uploadProgress }}%
               </div>
             </div>
-            <iframe *ngIf="pdfPreviewUrl" [src]="pdfPreviewUrl" width="100%" height="500"></iframe>
 
+             <iframe *ngIf="pdfPreviewUrl" [src]="pdfPreviewUrl" width="100%" height="500"></iframe>
           </div>
         </div>
       </div>

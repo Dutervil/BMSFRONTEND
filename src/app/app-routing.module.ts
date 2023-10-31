@@ -19,6 +19,7 @@ import {EditUserComponent} from "./components/user/edit-user/edit-user.component
 import {AddDonComponent} from "./components/beneficiaire/add-don/add-don.component";
 import {AddDocComponent} from "./components/beneficiaire/add-doc/add-doc.component";
 import {ViewAndPrintComponent} from "./components/beneficiaire/view-and-print/view-and-print.component";
+import {DocsComponent} from "./components/beneficiaire/docs/docs.component";
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'beneficiaire-add', component: AddBeneficiareFormComponent },
     { path: 'beneficiaire-list', component: ListBeneficiareComponent },
     { path: 'beneficiaire-view/:id', component: ViewBeneficiareComponent },
+    { path: 'beneficiaire-view/doc/:id', component: DocsComponent },
     { path: 'beneficiaire-edit/:id', component: EditBeneficiareComponent },
     { path: 'expences/report/:id', component: ViewAndPrintComponent },
     { path: 'beneficiaire/don', component: AddDonComponent },

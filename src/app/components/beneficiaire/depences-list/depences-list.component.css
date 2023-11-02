@@ -1,0 +1,15 @@
+.custom-fieldset {
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Style the legend */
+.custom-legend {
+  font-size: 18px;
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

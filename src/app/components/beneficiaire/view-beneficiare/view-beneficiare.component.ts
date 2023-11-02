@@ -24,6 +24,7 @@ export class ViewBeneficiareComponent implements OnInit {
   filteredExpenses:any=[];
   total:any;
   filterTypeDepence = '';
+  filterCurrency = 'HTG';
   startDate = '';
   endDate = '';
 
@@ -65,6 +66,8 @@ export class ViewBeneficiareComponent implements OnInit {
     let id =this.route.snapshot.paramMap.get("id");
      this.depenceService.getDepencesByBeneficiaireId(id).subscribe(
        response=>{
+         this.filteredExpenses=response;
+         this.filteredExpenses = this.filteredExpenses.filter((expense: { uniteMonetaire: string; }) => expense.uniteMonetaire === 'HTG');
          this.depence=response;
          console.log("TOTAL DEPENCES",response)
          response.map((e:any)=>{
@@ -98,7 +101,9 @@ export class ViewBeneficiareComponent implements OnInit {
     this.filteredExpenses = this.depence.filter((expense: { typeDepence: string; }) => {
       return this.filterTypeDepence === '' || expense.typeDepence === this.filterTypeDepence;
     });
-
+    if (this.filterCurrency) {
+      this.filteredExpenses = this.filteredExpenses.filter((expense: { uniteMonetaire: string; }) => expense.uniteMonetaire === this.filterCurrency);
+    }
     // Filter by date range
     if (parsedStartDate && parsedEndDate) {
       this.filteredExpenses = this.filteredExpenses.filter((expense: { dateDepence: string | number | Date; }) => {

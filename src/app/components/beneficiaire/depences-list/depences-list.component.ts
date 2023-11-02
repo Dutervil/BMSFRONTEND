@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {DepenceService} from "../../../service/depence.service";
 
+
 @Component({
   selector: 'app-depences-list',
   templateUrl: './depences-list.component.html',
@@ -16,11 +17,12 @@ export class DepencesListComponent implements OnInit {
   filteredExpenses:any=[];
   total:any;
   filterTypeDepence = '';
+  filterCurrency = 'HTG';
   startDate = '';
   endDate = '';
   p:number=1
   ngOnInit(): void {
-    this.filteredExpenses = this.depence;
+    // this.filteredExpenses = this.depence;
     this.getExpences();
   }
 
@@ -33,6 +35,9 @@ export class DepencesListComponent implements OnInit {
 
     this.depenceService.listDepence().subscribe(
       response=>{
+
+        this.filteredExpenses=response;
+        this.filteredExpenses = this.filteredExpenses.filter((expense: { uniteMonetaire: string; }) => expense.uniteMonetaire === 'HTG');
         this.depence=response;
         console.log("TOTAL DEPENCES",response)
         response.map((e:any)=>{
@@ -62,7 +67,9 @@ export class DepencesListComponent implements OnInit {
     this.filteredExpenses = this.depence.filter((expense: { typeDepence: string; }) => {
       return this.filterTypeDepence === '' || expense.typeDepence === this.filterTypeDepence;
     });
-
+    if (this.filterCurrency) {
+      this.filteredExpenses = this.filteredExpenses.filter((expense: { uniteMonetaire: string; }) => expense.uniteMonetaire === this.filterCurrency);
+    }
     // Filter by date range
     if (parsedStartDate && parsedEndDate) {
       this.filteredExpenses = this.filteredExpenses.filter((expense: { dateDepence: string | number | Date; }) => {
@@ -73,4 +80,9 @@ export class DepencesListComponent implements OnInit {
       });
     }
   }
+  calculateTotalMontant(): number {
+    return this.filteredExpenses.reduce((total: any, expense: { montant: any; }) => total + expense.montant, 0);
+  }
+
+
 }

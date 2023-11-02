@@ -35,6 +35,7 @@ import {DocsComponent} from "../components/beneficiaire/docs/docs.component";
 import {DocsListComponent} from "../components/beneficiaire/docs-list/docs-list.component";
 import {DepencesListComponent} from "../components/beneficiaire/depences-list/depences-list.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NumberFormatPipe} from "../number-format.pipe";
 
 
 
@@ -60,7 +61,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     AddDocComponent
     ,ViewAndPrintComponent,DocsComponent,
     DocsListComponent,
-    DepencesListComponent
+    DepencesListComponent,
+    NumberFormatPipe
 
   ],
   imports: [

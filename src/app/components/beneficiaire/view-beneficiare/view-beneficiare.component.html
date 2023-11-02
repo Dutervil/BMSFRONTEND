@@ -11,7 +11,7 @@
         <div class="card">
           <div class="card-body">
            <div style="display: flex; justify-content: space-between; align-items: center">
-             <h5 class="card-title"> 2,345.00 a ete deje depence pour ce beneficiare.</h5>
+             <h5 class="card-title"> Total depence pour  <b>{{beneficiare?.nom}} {{beneficiare?.prenom}}</b> est de: 567 <b>USD</b> et 6736 <b>HTG</b></h5>
              <button class="btn btn-primary" (click)="openReport()">Generer un raport </button>
            </div>
             <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
@@ -141,10 +141,19 @@
                 <div>
 
                   <div  class="d-flex justify-content-center align-items-center gap-1">
-                    <input class="form-check-input" type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value=""> All
-                    <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Payroll"> Payroll
-                    <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Scolaire"> Scolaire
-                    <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Medical"> Medical
+                    <fieldset class="custom-fieldset">
+                      <legend class="custom-legend">Filtrage par type de depence</legend>
+                      <input class="form-check-input" type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value=""> All
+                      <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Payroll"> Payroll
+                      <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Scolaire"> Scolaire
+                      <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Medical"> Medical
+                      <input class="form-check-input"  type="radio" name="typeDepence" [(ngModel)]="filterTypeDepence" value="Logement"> Logement
+                    </fieldset>
+                    <fieldset class="custom-fieldset">
+                      <legend class="custom-legend">Filtrage par type de Monnaie</legend>
+                      <input class="form-check-input" type="radio" name="currency" [(ngModel)]="filterCurrency" value="HTG"> HTG
+                      <input class="form-check-input" type="radio" name="currency" [(ngModel)]="filterCurrency" value="USD"> USD
+                    </fieldset>
                   </div>
                 </div>
                 <br>
@@ -155,10 +164,8 @@
 
                    <label>A</label>
                    <input class="form-control" type="date" [(ngModel)]="endDate">
-                   <button class="btn btn-dark" (click)="applyFilters()">Appliquer Filtrage</button>
+                   <button class="btn btn-dark" (click)="applyFilters()">Filtrer</button>
                  </div>
-
-
 
                 <br>
                <table class="table">
@@ -168,8 +175,6 @@
                    <th>Description</th>
                    <th>Type</th>
                    <th>Date</th>
-                   <th>Actions</th>
-
                  </tr>
                  <tr *ngFor="let d of filteredExpenses">
                    <td>{{d?.id}}</td>
@@ -177,14 +182,10 @@
                    <td>{{d?.description}}</td>
                    <td>{{d?.typeDepence}}</td>
                    <td>{{d?.dateDepence}}</td>
-                   <td>
-                     <button>Editer </button>
-                   </td>
-
                  </tr>
                  <tr style="background-color: black;color: white">
                    <th colspan="5">Depence Total:</th>
-                   <td>{{calculateTotalMontant() | number}}</td>
+                   <td>{{calculateTotalMontant() | numberFormat: 2}}</td>
                  </tr>
                </table>
               </div>

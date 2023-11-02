@@ -32,6 +32,9 @@ import {AddDocComponent} from "../components/beneficiaire/add-doc/add-doc.compon
 import {MatDialogModule} from "@angular/material/dialog";
 import {ViewAndPrintComponent} from "../components/beneficiaire/view-and-print/view-and-print.component";
 import {DocsComponent} from "../components/beneficiaire/docs/docs.component";
+import {DocsListComponent} from "../components/beneficiaire/docs-list/docs-list.component";
+import {DepencesListComponent} from "../components/beneficiaire/depences-list/depences-list.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 
@@ -55,7 +58,9 @@ import {DocsComponent} from "../components/beneficiaire/docs/docs.component";
     ViewUserComponent,
     AddDonComponent,
     AddDocComponent
-    ,ViewAndPrintComponent,DocsComponent
+    ,ViewAndPrintComponent,DocsComponent,
+    DocsListComponent,
+    DepencesListComponent
 
   ],
   imports: [
@@ -71,7 +76,8 @@ import {DocsComponent} from "../components/beneficiaire/docs/docs.component";
     MatInputModule,
     MatChipsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxPaginationModule
 
   ]
 })

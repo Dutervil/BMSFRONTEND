@@ -21,7 +21,12 @@ export class ViewBeneficiareComponent implements OnInit {
   beneficiare:any;
   depence:any=[]
   amounts:any=[];
+  filteredExpenses:any=[];
   total:any;
+  filterTypeDepence = '';
+  startDate = '';
+  endDate = '';
+
   constructor(private route: ActivatedRoute,
               private router:Router,
               private depenceService:DepenceService,
@@ -30,6 +35,7 @@ export class ViewBeneficiareComponent implements OnInit {
               private beneficiaireService:BeneficiaireService) { }
 
   ngOnInit(): void {
+    this.filteredExpenses = this.depence;
     let id =this.route.snapshot.paramMap.get("id")
     // @ts-ignore
     this.beneficiaireService.getBeneficiaire(id).subscribe(
@@ -60,6 +66,7 @@ export class ViewBeneficiareComponent implements OnInit {
      this.depenceService.getDepencesByBeneficiaireId(id).subscribe(
        response=>{
          this.depence=response;
+         console.log("TOTAL DEPENCES",response)
          response.map((e:any)=>{
            this.amounts.push(e.montant)
          })
@@ -75,5 +82,34 @@ export class ViewBeneficiareComponent implements OnInit {
   openReport() {
     let id =this.route.snapshot.paramMap.get("id")
     this.router.navigateByUrl(`BMS/expences/report/${id}`)
+  }
+  parseInputDate(dateString: string): string {
+    // Parse input date in 'YYYY-MM-DD' format to match the server's date format
+    const parts = dateString.split('-');
+    if (parts.length === 3) {
+      return parts[0] + '-' + parts[1] + '-' + parts[2];
+    }
+    return '';
+  }
+  applyFilters() {
+    const parsedStartDate = this.parseInputDate(this.startDate);
+    const parsedEndDate = this.parseInputDate(this.endDate);
+
+    this.filteredExpenses = this.depence.filter((expense: { typeDepence: string; }) => {
+      return this.filterTypeDepence === '' || expense.typeDepence === this.filterTypeDepence;
+    });
+
+    // Filter by date range
+    if (parsedStartDate && parsedEndDate) {
+      this.filteredExpenses = this.filteredExpenses.filter((expense: { dateDepence: string | number | Date; }) => {
+        const expenseDate = new Date(expense.dateDepence);
+        const start = new Date(parsedStartDate);
+        const end = new Date(parsedEndDate);
+        return start <= expenseDate && expenseDate <= end;
+      });
+    }
+  }
+  calculateTotalMontant(): number {
+    return this.filteredExpenses.reduce((total: any, expense: { montant: any; }) => total + expense.montant, 0);
   }
 }

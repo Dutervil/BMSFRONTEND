@@ -1,0 +1,33 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Liste de dossiers</h1>
+    <nav>
+    </nav>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <button (click)="goToCreateDossier()" class="btn btn-dark">Creer nouveau dossier</button>
+          </div>
+          <div class="card-body">
+           <ul class="list-group">
+
+             <li *ngFor="let d of docs | paginate: { itemsPerPage: 6, currentPage: p }" class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <button (click)="viewDoc(d?.fileData)" class="btn btn-success">{{d?.title}}</button>
+                <span><button (click)="onDelete(d?.id)" class="btn btn-danger">X</button></span>
+              </div>
+             </li>
+
+           </ul>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <iframe id="pdfViewer" width="100%" height="500"></iframe>
+</main>

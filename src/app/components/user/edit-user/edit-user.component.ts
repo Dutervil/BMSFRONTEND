@@ -24,7 +24,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     let id =this.route.snapshot.paramMap.get("id")
     // @ts-ignore
-    this.userService.findUser(id).subscribe(
+    this.userService.findById(id).subscribe(
       response=>{
         this.user=response;
       },
@@ -39,10 +39,11 @@ export class EditUserComponent implements OnInit {
     this.fileName=event.target.files[0].name;
   }
 
-  updateUser(UserForm: NgForm,username:string) {
+  updateUser(UserForm: NgForm,id:any,username:string) {
     const formData=this.userService.createUserFormData(
-      username,UserForm.value,this.profileImage
+      username,UserForm.value,id,this.profileImage
     )
+
     this.userService.UpdateUser(formData).subscribe(
       (response)=>{
         // @ts-ignore

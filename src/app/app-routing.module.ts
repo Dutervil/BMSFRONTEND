@@ -20,6 +20,8 @@ import {AddDonComponent} from "./components/beneficiaire/add-don/add-don.compone
 import {AddDocComponent} from "./components/beneficiaire/add-doc/add-doc.component";
 import {ViewAndPrintComponent} from "./components/beneficiaire/view-and-print/view-and-print.component";
 import {DocsComponent} from "./components/beneficiaire/docs/docs.component";
+import {DepencesListComponent} from "./components/beneficiaire/depences-list/depences-list.component";
+import {DocsListComponent} from "./components/beneficiaire/docs-list/docs-list.component";
 
 
 
@@ -42,9 +44,10 @@ const routes: Routes = [
     { path: 'beneficiaire-view/doc/:id', component: DocsComponent },
     { path: 'beneficiaire-edit/:id', component: EditBeneficiareComponent },
     { path: 'expences/report/:id', component: ViewAndPrintComponent },
+    { path: 'beneficiaire/dons', component: DepencesListComponent },
+    { path: 'beneficiaire/docs', component: DocsListComponent },
     { path: 'beneficiaire/don', component: AddDonComponent },
     { path: 'beneficiaire/doc', component: AddDocComponent },
-
   ]},
 
 

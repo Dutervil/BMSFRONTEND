@@ -59,8 +59,9 @@ export class ResgisterComponent implements OnInit {
 
   addNewUser(userForm:NgForm) :void {
    const formData=this.userService.createUserFormData(
-      '',userForm.value,this.profileImage
+      '',userForm.value,'',this.profileImage
    )
+    console.log("Form Data ",formData)
     this.userService.addUser(formData).subscribe(
       (response)=>{
         // @ts-ignore

@@ -24,7 +24,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let user of filteredUsers">
+              <tr *ngFor="let user of filteredUsers | paginate: { itemsPerPage: 6, currentPage: p }">
 
                 <th scope="row">  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img style="width: 20px" src="{{user?.profileImageUrl}}" alt="Profile" class="rounded-circle"> </a>
                 </th>
@@ -41,19 +41,15 @@
 
                 </td>
                 <td>
-                  <button (click)="edit(user.username)"  class="btn btn-info"><i class="text-white-50 bi bi-file-earmark-text-fill"></i></button>&nbsp;
-                  <button  (click)="view(user.username)" class="btn btn-success"><i class="bi bi-eye"></i></button>
+                  <button (click)="edit(user.id)"  class="btn btn-info"><i class="text-white-50 bi bi-file-earmark-text-fill"></i></button>&nbsp;
+                  <button  (click)="view(user.id)" class="btn btn-success"><i class="bi bi-eye"></i></button>
                 </td>
               </tr>
               <tr>
 
               </tbody>
             </table>
-            <div class="pagination float-end">
-              <button mat-raised-button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">&#9197;</button>
-              <li class="page-item"><a class="page-link" >{{ currentPage }} / {{ pageSize }}</a></li>
-              <button  mat-raised-button [disabled]="currentPage === pageSize" (click)="goToPage(currentPage + 1)">&#10140;</button>
-            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </div>
         </div>
       </div>

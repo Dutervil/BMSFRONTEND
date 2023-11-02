@@ -54,7 +54,7 @@ export class UserProfileComponent implements OnInit {
 
 
     const formData=this.userService.createUserFormData(
-      '',profileUserForm.value,this.profileImage
+      '',profileUserForm.value,'',this.profileImage
     )
     this.userService.UpdateUser(formData).subscribe(
       (response)=>{

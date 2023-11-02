@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Route, Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BeneficiaireService} from "../../../service/beneficiaire.service";
 
 @Component({
-  selector: 'app-docs',
-  templateUrl: './docs.component.html',
-  styleUrls: ['./docs.component.css']
+  selector: 'app-docs-list',
+  templateUrl: './docs-list.component.html',
+  styleUrls: ['./docs-list.component.css']
 })
-export class DocsComponent implements OnInit {
+export class DocsListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private service:BeneficiaireService,private router:Router) { }
-   docs:any;
+  docs:any;
   blobUrlToDownload:string="";
+  p:  number=1
   ngOnInit(): void {
-    let id =this.route.snapshot.paramMap.get("id")
-    this.service.getDocs(id).subscribe(
+
+    this.service.getAllDocs().subscribe(
       resp=>{
         console.log("Data from server ",resp)
-       this.docs=resp;
+        this.docs=resp;
       },error => {
         console.log(error)
       }
@@ -51,18 +52,19 @@ export class DocsComponent implements OnInit {
 
 
   }
-
-
+  goToCreateDossier() {
+  this.router.navigate(['BMS/beneficiaire/doc'])
+  }
   onDelete(id: any) {
     if(confirm("Etes-vous sure")){
-     this.service.delete(id).subscribe(
-       resp=>{
-         alert("Suppression reussite")
-         this.router.navigate(["/BMS/beneficiaire-list"])
-       },error => {
-         console.log(error)
-       }
-     )
+      this.service.delete(id).subscribe(
+        resp=>{
+          alert("Suppression reussite")
+          this.router.navigate(["BMS/beneficiaire/docs"])
+        },error => {
+          console.log(error)
+        }
+      )
     }
   }
 }

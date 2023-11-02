@@ -43,6 +43,13 @@ export class BeneficiaireService {
     return this.http.get<any>(`${this.baseUrl}dossier/get/${id}`)
   }
 
+  public  getAllDocs():Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}dossier`)
+  }
+
+  public  delete(id:any):Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}dossier/${id}`)
+  }
   public createUserFormData(id:string,beneficiaire: Beneficiaire, profileImage:File):FormData{
     const formData=new FormData();
     formData.append("id",id);

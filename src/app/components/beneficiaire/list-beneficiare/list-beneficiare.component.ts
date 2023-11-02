@@ -19,6 +19,7 @@ export class ListBeneficiareComponent implements OnInit {
   public filterText: string = '';
   public beneficiaire: Beneficiaire[] = []; // Assuming you have a Beneficiaire interface/type
   public filteredBeneficiaire: Beneficiaire[] = [];
+  p: number=1;
   ngOnInit(): void {
     this.getBeneficiaire(true);
   }

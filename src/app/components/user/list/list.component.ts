@@ -18,6 +18,7 @@ export class ListComponent implements OnInit {
   public pageSize: number = 10; // Number of items to display per page
   public currentPage: number = 1; // Current page number
   public totalItems: number = 0;
+  p: number=1;
   constructor(private notificationService:NotificationService,
     private userService:UserService,private router:Router) { }
 
@@ -67,8 +68,8 @@ export class ListComponent implements OnInit {
     }
   }
 
-  view(username: string ) {
-    this.router.navigateByUrl(`BMS/user/view/${username}`)
+  view(id: any ) {
+    this.router.navigateByUrl(`BMS/user/view/${id}`)
 }
 
   edit(id: any ) {

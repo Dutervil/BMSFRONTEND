@@ -24,8 +24,12 @@ export class UserService {
     return this.http.post<User>(`${this.baseUrl}user/add`,formData)
   }
 
-  public findUser(username: String): Observable<User | HttpErrorResponse>{
-    return this.http.get<User>(`${this.baseUrl}user/find/${username}`)
+  public findUser(id: any): Observable<User | HttpErrorResponse>{
+    return this.http.get<User>(`${this.baseUrl}user/find/${id}`)
+  }
+
+  public findById(id: any): Observable<User | HttpErrorResponse>{
+    return this.http.get<User>(`${this.baseUrl}user/find/unique/${id}`)
   }
   public UpdateUser(formData: FormData): Observable<User | HttpErrorResponse>{
     return this.http.put<User>(`${this.baseUrl}user/update`,formData)
@@ -56,8 +60,9 @@ export class UserService {
     }
     return null;
   }
-  public createUserFormData(loggedInUsername:string,user: User, profileImage:File):FormData{
+  public createUserFormData(loggedInUsername:string,user: User,id:any, profileImage:File):FormData{
    const formData=new FormData();
+    formData.append("id",id);
     formData.append("currentUsername",loggedInUsername);
     formData.append("firstName",user.firstName);
     formData.append("lastName",user.lastName);

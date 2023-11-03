@@ -21,4 +21,9 @@ export class DashboardService {
     return this.http.get<any>(`${this.baseUrl}dashboard/statistic/total`);
 
   }
+
+  getByCurrency(){
+    return this.http.get<any>(`${this.baseUrl}dashboard`);
+
+  }
 }

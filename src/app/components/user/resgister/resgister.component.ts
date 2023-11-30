@@ -61,7 +61,10 @@ export class ResgisterComponent implements OnInit {
    const formData=this.userService.createUserFormData(
       '',userForm.value,'',this.profileImage
    )
+    console.log('isNotLocked', userForm.value.isNotLocked);
+    console.log('isActive', userForm.value.isActive);
     console.log("Form Data ",formData)
+
     this.userService.addUser(formData).subscribe(
       (response)=>{
         // @ts-ignore

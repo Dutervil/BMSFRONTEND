@@ -43,7 +43,9 @@ export class EditUserComponent implements OnInit {
     const formData=this.userService.createUserFormData(
       username,UserForm.value,id,this.profileImage
     )
-
+    console.log('isNotLocked', UserForm.value.isNotLocked);
+    console.log('isActive', UserForm.value.isActive);
+    console.log("Form Data ",formData)
     this.userService.UpdateUser(formData).subscribe(
       (response)=>{
         // @ts-ignore

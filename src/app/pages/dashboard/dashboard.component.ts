@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import {DashboardService} from "../../service/dashboard.service";
 import { Chart, registerables  } from 'node_modules/chart.js'
 import {BeneficiaireService} from "../../service/beneficiaire.service";
+import {DepenceService} from "../../service/depence.service";
 Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,15 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef, private _dashboardService:DashboardService,private _beneService:BeneficiaireService) { }
+  constructor(private elementRef: ElementRef,
+              private depenceService:DepenceService,
+              private _dashboardService:DashboardService,private _beneService:BeneficiaireService) { }
 
   stats:any;
+  currency:any;
 
   serverData: any[] = []
+  expences: any[] = []
   ngOnInit(): void {
 
 
@@ -22,6 +27,7 @@ export class DashboardComponent implements OnInit {
     this.getStatisticAmount();
     this.getActive();
     this.getStatusStats();
+    this.  getByCurrency();
 
   }
 
@@ -105,6 +111,18 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  getByCurrency(){
+    this._dashboardService.getByCurrency().subscribe(
+      response=>{
+        this.currency=response;
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
 getStatusStats(){
     this._beneService.getStatusInfo().subscribe(
       resp=>{
@@ -115,5 +133,15 @@ getStatusStats(){
     )
 }
 
+getDepence() :void {
+    this.depenceService.listDepence().subscribe(
+      response=>{
+        this.expences=response;
+        console.log("Liste de depence",this.expences)
+      },error => {
+        console.log(error)
+      }
+    )
+}
 
 }
